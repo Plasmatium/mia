@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from bottle import route, run, template, static_file, error, request, redirect
 from optparse import OptionParser
+from IPython.core.debugger import Tracer; set_trace = Tracer(colors = 'linux')
 import os
 import time
 
@@ -174,10 +175,10 @@ PAGE = u'''
                             %end
                         </td>
                         <td class='data'>
-                            {{file.filesize}}
+                            {{file.filedate}}
                         </td>
                         <td class='data'>
-                            {{file.filedate}}
+                            {{file.filesize}}
                         </td>
                     </tr>
                 %end
@@ -318,8 +319,8 @@ def set_argument():
 class HtmlFile(object):
     def __init__(self, iconType, folder, filename, file_path):
         self.iconType = iconType
-        self.folder = folder.decode('cp1252')
-        self.filename = filename.decode('cp1252')
+        self.folder = folder#.decode('cp1252')
+        self.filename = filename#.decode('cp1252')
         self.filesize = convert_bytes(file_path)
         self.filedate = date_file(file_path)
 
